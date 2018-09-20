@@ -7,4 +7,7 @@ class TasksController < ApplicationController
     task_id = params[:id]
     @task = Task.find(task_id)
   end
+
+  def new
+  end 
 end
