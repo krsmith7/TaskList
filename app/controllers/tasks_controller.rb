@@ -11,4 +11,8 @@ class TasksController < ApplicationController
   def new
     @task = Task.new
   end
+
+  def create
+    @task = Task.new(action: params[:task][:action], description: params[:task][:description], completion_date: params[:task][:completion_date])
+  end
 end
