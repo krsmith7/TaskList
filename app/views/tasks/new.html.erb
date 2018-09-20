@@ -1,4 +1,4 @@
-<%= form_with url: "/tasks", method: :post do |f| %>
+<%= form_with model: @task, class: 'new-task-form' do |f| %>
   <h1>Enter your new task: </h1>
   <%= f.label :action %>:
     <%= f.text_field :action%>
