@@ -1,10 +1,1 @@
-<%= form_with model: @task, class: 'edit-task-form' do |form| %>
-  <h1>Edit your task: </h1>
-  <%= form.label :action %>:
-    <%= form.text_field :action%>
-  <%= form.label :description %>:
-    <%= form.text_field :description %>
-  <%= form.label :completion_date %>:
-    <%= form.text_field :completion_date %>
-  <%= form.submit "Save Update" %>
-<% end %>
+<%= render partial: "form" %>
