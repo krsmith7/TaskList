@@ -4,8 +4,10 @@
 	<p>
 		<strong>Task:</strong>
 		<p><%= @task.action%></p>
+		<strong>Description:</strong>
 		<p><%= @task.description%></p>
-		<p><%= @task.completion_date%></p>
+		<strong>Completion Date: </strong>
+		<%= @task.completion_date%></p>
 	</p>
 	<%= link_to "Edit Task", edit_task_path %>
 </section>
