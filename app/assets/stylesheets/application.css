@@ -13,3 +13,30 @@
  *= require_tree .
  *= require_self
  */
+/* h1, nav, body {
+  background-color: coral;
+  color: ivory;
+} */
+
+/* .index-task-action {
+  text-decoration: line-through;
+} */
+
+body {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+nav {
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+nav li {
+  list-style: none;
+}
+
+.content {
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
