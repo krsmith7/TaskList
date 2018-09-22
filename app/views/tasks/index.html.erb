@@ -1,10 +1,14 @@
 
 <h1>Tasks</h1>
 
+<section class = "content index">
 <ol>
 <% @tasks.each do |task| %>
-      <li><%= task.action %>
+      <li class="index-task-action"><%= task.action %>
+        <%= check_box_tag(:complete) %>
+  <%= label_tag(:complete) %>
     <p>
+        <%= link_to "Mark complete", tasks_path %>
       <%= link_to "View Details", task_path(task.id) %>
       <%= link_to "Delete task", task_path(task.id), method: :delete, data: {confirm: "Are you sure you want to delete?"}%>
     </p></li>
@@ -12,3 +16,4 @@
 </ol>
 
 <%= link_to "Add a new task", new_task_path %>
+</section>
