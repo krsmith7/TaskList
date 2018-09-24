@@ -16,7 +16,7 @@ class TasksController < ApplicationController
 
 
   def create
-    @task = Task.new(action: params[:task][:action], description: params[:task][:description], completion_date: params[:task][:completion_date])
+    @task = Task.new(action: params[:task][:action], description: params[:task][:description], completion_date: params[:task][:completion_date], is_complete: params[:task][:is_complete])
 
     if @task.save
       redirect_to root_path
@@ -42,6 +42,16 @@ class TasksController < ApplicationController
     end
   end
 
+  def mark_complete
+    @task = Task.find(params[:id])
+
+    @task.is_complete = 1
+    @task.completion_date == Today
+
+    redirect_to tasks_path
+  end
+
+
   def destroy
     task = Task.find(params[:id])
 
@@ -49,4 +59,14 @@ class TasksController < ApplicationController
     redirect_to tasks_path
   end
 
+  # private
+  #
+  # def task_params
+  #   return params.require(:task).permit(
+  #     :action,
+  #     :description,
+  #     :completion_date,
+  #     :is_complete
+  #     )
+  # end
 end
