@@ -7,13 +7,16 @@
       <li class="index-task-action"><%= task.action %>
         <!-- <%= check_box_tag(:is_complete) %>
         <%= label_tag(:is_complete, 1) %> -->
+
+    <!-- set task as 0 to start at initialization? -->
     <p>
       <% if task.is_complete== nil && task.completion_date == nil %>
-        <%= link_to" Mark complete", tasks_path %> |
+        <%= link_to " Mark complete", mark_task_path(task.id), method: :patch %> |
+
       <% elsif task.is_complete != nil || task.completion_date != nil %>
         <%= link_to_if(task.is_complete != nil || task.completion_date != nil, " Unmark complete", tasks_path) %> |
       <% end %>
-       
+
       <%= link_to " View Details", task_path(task.id) %> |
       <%= link_to " Delete task", task_path(task.id), method: :delete, data: {confirm: "Are you sure you want to delete?"}%>
     </p></li>
