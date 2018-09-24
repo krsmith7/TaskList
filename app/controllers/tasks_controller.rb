@@ -46,7 +46,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
 
     @task.update(is_complete: 1)
-    @task.update(completion_date: Today)
+    @task.update(completion_date: Date.today)
 
     redirect_to tasks_path
   end
