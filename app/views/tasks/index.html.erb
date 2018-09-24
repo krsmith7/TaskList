@@ -4,14 +4,18 @@
 <section class = "content index">
 <ol>
 <% @tasks.each do |task| %>
-      <li class="index-task-action"><%= task.action %>
-        <!-- <%= check_box_tag(:is_complete) %>
-        <%= label_tag(:is_complete, 1) %> -->
+    <%  if task.completion_date == nil %>
+      <li class="index-task-action"><p class = "not-complete-action"><%= task.action %></p>
+    <% else %>
+      <li class="index-task-action"><p class = "complete-action"><%= task.action %>
+    <% end %>
+      <!-- <%= check_box_tag(:is_complete) %>
+        # <%= label_tag(:is_complete, 1) %> -->
 
-    <!-- set task as 0 to start at initialization? -->
+     <!-- set task as 0 to start at initialization? -->
     <p>
       <% if task.is_complete== nil && task.completion_date == nil %>
-        <%= link_to " Mark complete", mark_task_path(task.id), method: :patch %> |
+        <%= link_to " Mark complete", mark_task_path(task.id), method: :put %> |
 
       <% elsif task.is_complete != nil || task.completion_date != nil %>
         <%= link_to_if(task.is_complete != nil || task.completion_date != nil, " Unmark complete", tasks_path) %> |
