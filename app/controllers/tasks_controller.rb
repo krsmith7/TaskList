@@ -17,13 +17,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(action: params[:task][:action], description: params[:task][:description], completion_date: params[:task][:completion_date], is_complete: "no")
-# was no method error because form had no is complete for params?
 
-      # , is_complete: params[:task][:is_complete])
-
-## future edits - make is complete 0
-    # @task.is_complete = "no"
-    # @task.is_complete = 0
 
     if @task.save
       redirect_to root_path
@@ -49,6 +43,7 @@ class TasksController < ApplicationController
     end
   end
 
+
   def mark_complete
     @task = Task.find(params[:id])
 
@@ -59,6 +54,16 @@ class TasksController < ApplicationController
 
     redirect_to tasks_path
   end
+
+
+  def unmark_complete
+    @task = Task.find(params[:id])
+
+    @task.update(completion_date: nil)
+
+    redirect_to tasks_path
+  end
+
 
 
   def destroy

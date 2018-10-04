@@ -20,7 +20,7 @@
         <%= link_to " Mark complete", mark_task_path(task.id), method: :patch %> |
 
       <% elsif task.completion_date != nil %>
-        <%= link_to " Unmark complete", tasks_path %> |
+        <%= link_to " Unmark complete", unmark_task_path(task.id), method: :patch %> |
       <% end %>
 
       <%= link_to " View Details", task_path(task.id) %> |
