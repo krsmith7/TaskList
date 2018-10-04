@@ -16,7 +16,14 @@ class TasksController < ApplicationController
 
 
   def create
-    @task = Task.new(action: params[:task][:action], description: params[:task][:description], completion_date: params[:task][:completion_date], is_complete: params[:task][:is_complete])
+    @task = Task.new(action: params[:task][:action], description: params[:task][:description], completion_date: params[:task][:completion_date], is_complete: "no")
+# was no method error because form had no is complete for params?
+
+      # , is_complete: params[:task][:is_complete])
+
+## future edits - make is complete 0
+    # @task.is_complete = "no"
+    # @task.is_complete = 0
 
     if @task.save
       redirect_to root_path
@@ -34,7 +41,7 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
 
-    if @task.update(action: params[:task][:action], description: params[:task][:description], completion_date: params[:task][:completion_date])
+    if @task.update(action: params[:task][:action], description: params[:task][:description], completion_date: params[:task][:completion_date], is_complete: params[:task][:is_complete])
 
         redirect_to task_path
     else
@@ -45,8 +52,10 @@ class TasksController < ApplicationController
   def mark_complete
     @task = Task.find(params[:id])
 
-    @task.update(is_complete: 1)
+    # @task.update(is_complete: 1)
     @task.update(completion_date: Date.today)
+    # @task.update_attribute(:is_complete, 1)
+    # @task.update_attribute(:completion_date, Date.today)
 
     redirect_to tasks_path
   end

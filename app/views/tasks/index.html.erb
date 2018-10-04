@@ -14,11 +14,13 @@
 
      <!-- set task as 0 to start at initialization? -->
     <p>
-      <% if task.is_complete== nil && task.completion_date == nil %>
-        <%= link_to " Mark complete", mark_task_path(task.id), method: :put %> |
 
-      <% elsif task.is_complete != nil || task.completion_date != nil %>
-        <%= link_to_if(task.is_complete != nil || task.completion_date != nil, " Unmark complete", tasks_path) %> |
+
+      <% if task.completion_date == nil %>
+        <%= link_to " Mark complete", mark_task_path(task.id), method: :patch %> |
+
+      <% elsif task.completion_date != nil %>
+        <%= link_to " Unmark complete", tasks_path %> |
       <% end %>
 
       <%= link_to " View Details", task_path(task.id) %> |
@@ -29,6 +31,3 @@
 
 <%= link_to "Add a new task", new_task_path %>
 </section>
-
-
-<!-- press mark complete. adds add to completion. -->
